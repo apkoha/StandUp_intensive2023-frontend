@@ -1,0 +1,49 @@
+.notification {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.2;
+  border-radius: 16px;
+  background: rgb(10, 172, 56);
+  margin-left: 60px;
+  padding: 32px;
+  z-index: 1000;
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transform: translateX(100%);
+}
+
+.notification_show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.notification_success {
+  padding-right: 76px;
+  background: #00992B url(../img/iconamoon_check-bold.svg) right 32px center / 36px no-repeat;
+}
+
+.notification_error {
+  background-color: #900;
+}
+
+@media (max-width: 1024px) {
+  .notification {
+    margin-left: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .notification {
+    margin-left: 60px;
+  }
+}
+
+@media (max-width: 680px) {
+  .notification {
+    margin-left: 16px;
+  }
+}
