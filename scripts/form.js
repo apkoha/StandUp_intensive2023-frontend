@@ -1,12 +1,15 @@
 import Inputmask from "inputmask";
 import JustValidate from "just-validate";
 import { Notification } from "./notification.js";
+import { sendData } from "./api.js";
 
 export const initForm = (
   bookingForm,
   bookingInputFullname,
   bookingInputPhone,
-  bookingInputTicket
+  bookingInputTicket,
+  changeSection,
+  bookingComediansList
 ) => {
   //валидация день 5 видео 1 время 42:33
   const validate = new JustValidate(bookingForm, {
@@ -66,8 +69,13 @@ export const initForm = (
       Notification.getInstance().show(errorMessage.slice(0, -2), false);
     });
 
-  bookingForm.addEventListener("submit", (e) => {
+  bookingForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    if (!validate.isValid) {
+      return;
+    }
+
     const data = { booking: [] };
     const times = new Set();
 
@@ -83,13 +91,38 @@ export const initForm = (
       } else {
         data[field] = value;
       }
-
-      if (times.size !== data.booking.length) {
-        Notification.getInstance().show(
-          "Нельзя быть в одно время на двух выступлениях",
-          false
-        );
-      }
     });
+
+    if (times.size !== data.booking.length) {
+      Notification.getInstance().show(
+        "Нельзя быть в одно время на двух выступлениях",
+        false
+      );
+    }
+
+    console.log(data);
+    if (!times.size) {
+      Notification.getInstance().show("Вы не выбрали комика и/или время");
+    }
+
+    const method = bookingForm.getAttribute("method");
+    console.log("bookingForm: ", bookingForm);
+
+    let isSend = false;
+
+    if (method === "PATCH") {
+      isSend = await sendData(method, data, data.ticketNumber);
+    } else {
+      isSend = await sendData(method, data);
+    }
+
+    if (isSend) {
+      Notification.getInstance().show("Бронь принята", true);
+      changeSection(); //Бонус видео 2 время 28:46
+      bookingForm.reset();
+      bookingComediansList.textContent = "";
+    }
   });
 };
+
+//отправка данных на сервер Бонус видео 2 время 25:11
