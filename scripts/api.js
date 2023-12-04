@@ -1,6 +1,28 @@
+import { Notification } from "./notification"; // у него без .js
+
+const API_URL = "https://shimmering-amusing-eustoma.glitch.me/";
+
 export const getComedian = async () => {
   try {
-    const response = await fetch("http://localhost:8080/comedians");
+    // const response = await fetch("http://localhost:8080/comedians");
+    const response = await fetch(`${API_URL}comedians`);
+    if (!response.ok) {
+      throw new Error(`Сервер вернул ошибку: ${response.status}`);
+    }
+    return response.json();
+  } catch (error) {
+    console.error(`Возникла проблема с fetch запросом: ${error.message}`);
+
+    Notification.getInstance().show(
+      "На сервере возникла ошибка, попробуйте позже"
+    );
+  }
+};
+
+export const getClient = async (ticket) => {
+  try {
+    const response = await fetch("http://localhost:8080/comedians/ticket");
+    // const response = await fetch(`${API_URL}clients/${ticket}`);
     if (!response.ok) {
       throw new Error(`Сервер вернул ошибку: ${response.status}`);
     }
@@ -18,7 +40,8 @@ export const getComedian = async () => {
 export const sendData = async (method, data, id) => {
   try {
     const response = await fetch(
-      `http://localhost:8080/clients${id ? `/${id}` : ""}`, //ошибка fetch
+      // `http://localhost:8080/clients${id ? `/${id}` : ""}`,
+      `${API_URL}clients${id ? `/${id}` : ""}`,
       {
         method,
         headers: {

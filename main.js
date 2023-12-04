@@ -2,8 +2,13 @@ import "./style.css";
 import { initForm } from "./scripts/form.js";
 import { getComedian } from "./scripts/api.js";
 import { initChangeSection } from "./scripts/changeSection.js";
+import { initQrPage } from "./scripts/qrPage.js"; //внимание Page должен быть с большой буквы
 
 const init = async () => {
+  if (window.location.pathname.endsWith("qr.html")) {
+    initQrPage();
+    return;
+  }
   const bookingComediansList = document.querySelector(
     ".booking__comedians-list"
   );
