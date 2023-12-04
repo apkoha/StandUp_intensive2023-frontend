@@ -100,13 +100,11 @@ export const initForm = (
       );
     }
 
-    console.log(data);
     if (!times.size) {
       Notification.getInstance().show("Вы не выбрали комика и/или время");
     }
 
     const method = bookingForm.getAttribute("method");
-    console.log("bookingForm: ", bookingForm);
 
     let isSend = false;
 

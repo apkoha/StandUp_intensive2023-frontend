@@ -21,8 +21,8 @@ export const getComedian = async () => {
 
 export const getClient = async (ticket) => {
   try {
-    const response = await fetch("http://localhost:8080/comedians/ticket");
-    // const response = await fetch(`${API_URL}clients/${ticket}`);
+    // const response = await fetch("http://localhost:8080/comedians/ticket");
+    const response = await fetch(`${API_URL}clients/${ticket}`);
     if (!response.ok) {
       throw new Error(`Сервер вернул ошибку: ${response.status}`);
     }

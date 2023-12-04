@@ -1,12 +1,13 @@
+//Bonus время 25:46
+
 export const displayClientInfo = (parent, data) => {
-  parent.innerHTML += <p class="booking__client-item">Имя: ${data.fullname}</p>;
-  parent.innerHTML += (
-    <p class="booking__client-item">Телефон: ${data.phone}</p>
-  );
-  parent.innerHTML += (
-    <p class="booking__client-item">Номер билета: ${data.ticketNumber}</p>
-  );
+  parent.innerHTML += `
+  <p class="booking__client-item">Имя: ${data.fullname}</p>;
+  <p class="booking__client-item">Телефон: ${data.phone}</p>
+  <p class="booking__client-item">Номер билета: ${data.ticketNumber}</p>
+  `;
 };
+
 export const displayBooking = (parent, clientData, comediansData) => {
   const bookingList = document.createElement("ul");
   bookingList.classList.add("booking__list");

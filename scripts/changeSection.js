@@ -39,8 +39,6 @@ export const initChangeSection = (
     changeSection();
     bookingTitle.textContent = "Редактирование брони";
     bookingForm.method = "PATCH";
-    console.log("bookingForm: ", bookingForm);
-    console.log("bookingForm.method: ", bookingForm.method);
   });
 
   return changeSection;

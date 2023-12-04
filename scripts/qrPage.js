@@ -1,6 +1,6 @@
 import { displayBooking, displayClientInfo } from "./display";
 import { Notification } from "./notification";
-import { getClient, getComedians } from "./api";
+import { getClient } from "./api";
 import { showQrController } from "./showQrController";
 
 const getTicketNumber = () => {
@@ -23,6 +23,6 @@ export const initQrPage = async () => {
 
     showQrController(bookingPerformance);
   } else {
-    Notification.getInstanse().show("Произошла ошибка, проверьте ссылку!");
+    Notification.getInstance().show("Произошла ошибка, проверьте ссылку!");
   }
 };
