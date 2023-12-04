@@ -5,5 +5,5 @@
 - frontend библиотека ViteJS
 - https://tom-select.js.org/ - плагин для кастомизации select
 - https://just-validate.dev/ - валидация
-- https://github.com/RobinHerbots/Inputmask -стилизация input
+- https://github.com/RobinHerbots/Inputmask - стилизация input
 - https://www.npmjs.com/package/qrcode - генерация QR-кодов
